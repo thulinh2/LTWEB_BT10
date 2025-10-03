@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Quản lý Category</title>
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+    th, td { border: 1px solid #ddd; padding: 8px; }
+    th { background: #f4f4f4; }
+    a, button { padding: 6px; margin: 4px 0; text-decoration: none; }
+    .nav { margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+  <div class="nav"><a href="/home.html">← Home</a></div>
+  <h1>Categories</h1>
+
+  <a href="/admin/category/create">+ Thêm Category</a>
+
+  <table>
+    <thead>
+      <tr><th>ID</th><th>Name</th><th>Images</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+      <c:forEach var="c" items="${categories}">
+        <tr>
+          <td>${c.id}</td>
+          <td>${c.name}</td>
+          <td>${c.images}</td>
+          <td>
+            <a href="/admin/category/edit/${c.id}">Edit</a> |
+            <a href="/admin/category/delete/${c.id}" onclick="return confirm('Xóa category này?')">Delete</a>
+          </td>
+        </tr>
+      </c:forEach>
+    </tbody>
+  </table>
+</body>
+</html>

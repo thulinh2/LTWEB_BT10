@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Product Management</title>
+  <style>
+    body{font-family:Arial;margin:20px;}
+    table{border-collapse:collapse;width:100%;margin-bottom:20px;}
+    th,td{border:1px solid #ddd;padding:8px;text-align:left;}
+    th{background:#f4f4f4;}
+    a,button{padding:6px;margin:4px 0;display:inline-block;}
+    .nav{margin-bottom:12px;}
+  </style>
+</head>
+<body>
+  <div class="nav"><a href="/admin/home">← Home</a></div>
+  <h1>Product Management</h1>
+
+  <a href="/admin/product/create">Thêm Product</a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th><th>Title</th><th>Price</th><th>Quantity</th><th>Description</th><th>User</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="p : ${products}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.title}"></td>
+        <td th:text="${p.price}"></td>
+        <td th:text="${p.quantity}"></td>
+        <td th:text="${p.description}"></td>
+        <td th:text="${p.user != null} ? ${p.user.fullname} : ''"></td>
+        <td>
+          <a th:href="@{'/admin/product/edit/' + ${p.id}}">Edit</a>
+          <a th:href="@{'/admin/product/delete/' + ${p.id}}" onclick="return confirm('Xóa product này?');">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

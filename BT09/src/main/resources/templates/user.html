@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Users</title>
+  <style>
+    body{font-family:Arial;margin:20px;}
+    table{border-collapse:collapse;width:100%;}
+    th,td{border:1px solid #ddd;padding:8px;}
+    th{background:#f4f4f4;}
+    a,button{padding:6px;margin:4px 0;display:inline-block;}
+    .nav{margin-bottom:12px;}
+  </style>
+</head>
+<body>
+  <div class="nav"><a href="/admin/home">← Home</a></div>
+  <h1>Users</h1>
+
+  <a href="/admin/user/create">Thêm User</a>
+  <table>
+    <thead>
+      <tr><th>ID</th><th>Fullname</th><th>Email</th><th>Phone</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+      <!-- Sử dụng Thymeleaf để lặp qua danh sách users -->
+      <tr th:each="u : ${users}">
+        <td th:text="${u.id}"></td>
+        <td th:text="${u.fullname}"></td>
+        <td th:text="${u.email}"></td>
+        <td th:text="${u.phone}"></td>
+        <td>
+          <a th:href="@{'/admin/user/edit/' + ${u.id}}">Edit</a>
+          <a th:href="@{'/admin/user/delete/' + ${u.id}}" 
+             onclick="return confirm('Xóa user này?');">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

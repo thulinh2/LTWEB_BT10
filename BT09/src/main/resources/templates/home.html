@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Dashboard</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	text-align: center;
+	padding-top: 60px;
+	background: #f5f5f5;
+}
+
+h1 {
+	margin-bottom: 30px;
+}
+
+a, button {
+	display: inline-block;
+	padding: 14px 22px;
+	margin: 10px;
+	background: #2d8cf0;
+	color: white;
+	text-decoration: none;
+	border-radius: 6px;
+}
+
+a:hover, button:hover {
+	background: #1666c7;
+	cursor: pointer;
+}
+
+form {
+	display: inline;
+}
+</style>
+</head>
+<body>
+	<h1>Dashboard</h1>
+
+	<!-- Nếu là ADMIN -->
+	<div th:if="${session.ROLE == 'ADMIN'}">
+		<a th:href="@{/admin/product}">Quản lý Product</a>
+		<a th:href="@{/admin/user}">Quản lý User</a>
+		<a th:href="@{/admin/category}">Quản lý Category</a>
+	</div>
+
+	<!-- Nếu là USER -->
+	<div th:if="${session.ROLE == 'USER'}">
+		<a th:href="@{/user/home}">Trang chủ User</a>
+	</div>
+
+	<!-- Logout -->
+	<form th:action="@{/logout}" method="get">
+		<button type="submit">Logout</button>
+	</form>
+</body>
+</html>
